@@ -1,0 +1,14 @@
+CREATE DATABASE voting_system;
+USE voting_system;
+
+CREATE TABLE user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    mobile VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    address TEXT,
+    image VARCHAR(255),
+    role ENUM('1', '2') NOT NULL, -- 1 for Voter, 2 for Group
+    status INT DEFAULT 0,         -- 0 for not voted, 1 for voted
+    votes INT DEFAULT 0          -- Number of votes received (for groups)
+);

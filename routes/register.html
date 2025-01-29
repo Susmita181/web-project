@@ -3,56 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online voting system - Registration</title>
+    <title>Online Voting System - Registration</title>
     <link rel="stylesheet" href="../css/stylesheet.css">
 </head>
 <body>
-    <style>
-    #address{
-        width: 23%;
-    }
-    #imagepart{
-        border: 2px solid black;
-        border-radius: 5px;
-        padding: 10px;
-        width: 27%;
-    }
-    #role{
-        border: 2px solid black;
-        border-radius: 5px;
-        padding: 10px;
-        width: 27%;
-    }
-    #role select{
-        border-radius: 5px;
-        padding: 10px;
-    }
-</style>
-    <h1>Online voting system</h1>
-    <br>
-    <h3>Registration</h3>
-    <form action="../api/register.php" method="POST">
-        <input type="text" name="name" placeholder="Your name">
-        <input type="number" name="mobile" placeholder="Your mobile number"><br><br>
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="cpassword" placeholder="Confirmed password"><br><br>
-        <input id="address"type="text" name="address" placeholder="Address"><br><br>
-        <center>
-        <div id="imagepart">
-            Upload image:<input type="file" name="image">
-        </div>
-        <br>
-        <div id="role">
-            Select your role:<select name="role">
-                <option value="1">Voter</option>
-                <option value="2">Group</option>
-            </select>
-        </div>
-        </center>
-        <br>
-        <button id="loginbtn">Register</button><br><br>
-        Already here?<a href="../index.html">Log in here</a>
+    <div id="headerSection">
+        <h1>Online Voting System</h1>
+        <h3>Registration</h3>
+    </div>
+    <hr>
+    <div id="bodySection">
+        <form action="../api/register.php" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="number" name="mobile" placeholder="Your mobile number" required><br><br>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="cpassword" placeholder="Confirm password" required><br><br>
+            <input type="text" name="address" placeholder="Address" required><br><br>
+            
+            <div id="imagepart">
+                Upload image: <input type="file" 
+                                   name="image" 
+                                   accept="image/jpeg,image/png,image/gif" 
+                                   required 
+                                   onchange="validateFileSize(this)">
+            </div>
+            
+            <div id="role">
+                Select your role:
+                <select name="role" required>
+                    <option value="1">Voter</option>
+                    <option value="2">Group</option>
+                </select>
+            </div>
+            
+            <button id="loginbtn" type="submit">Register</button><br><br>
+            Already registered? <a href="../index.html">Login here</a>
+        </form>
+    </div>
 
-    </form>
+    <script>
+    function validateFileSize(input) {
+        const file = input.files[0];
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        
+        if (file && file.size > maxSize) {
+            alert('File is too large! Please select a file under 5MB.');
+            input.value = '';
+        }
+    }
+    </script>
 </body>
 </html>

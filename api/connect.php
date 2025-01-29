@@ -1,4 +1,3 @@
 <?php
-$connect=mysqli_connect("localhost","root","","voting") or die("connection error");
-
+$connect = mysqli_connect("localhost", "root", "", "voting_system") or die("Connection failed");
 ?>
